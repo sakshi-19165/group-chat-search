@@ -48,8 +48,12 @@ MONTH_MAP = {
 }
 
 CONCEPT_MAP = {
-    "destination": ["manali", "pahadon", "destination", "chalo", "fix"],
-    "vacation": ["manali", "pahadon", "trip", "holiday", "getaway"],
+    "destination": ["manali", "pahadon", "destination", "chalo", "fix", "himachal"],
+    "vacation": ["manali", "pahadon", "trip", "holiday", "getaway", "chalo", "fix"],
+    "manali": ["manali", "pahadon", "cottage", "himachal", "kasol", "fix", "chalo"],
+    "decide": ["fix", "final", "pakka", "decide", "decided", "sorted", "faisla", "manali"],
+    "decided": ["fix", "final", "pakka", "decide", "decided", "sorted", "faisla", "manali"],
+    "finalized": ["fix", "final", "pakka", "decide", "decided", "sorted", "locked", "chalo"],
     "finances": ["hisab", "kitab", "excel", "sheet", "track", "manage"],
     "car": ["scorpio", "gaadi", "vehicle", "drive", "suv", "chalayega"],
     "vehicle": ["gaadi", "scorpio", "tyre", "servicing", "check"],
@@ -199,6 +203,12 @@ class ChatSearchEngine:
             m_pos = re.search(r"\b([a-zA-Z]+)'s\b", lower_q)
             if m_pos and m_pos.group(1).lower() in pmap:
                 sender_filter = pmap[m_pos.group(1).lower()]
+        else:
+            for alias, full_name in pmap.items():
+                if re.search(rf"\b{alias}\s+(?:said|told|mentioned|specified|asked|shared|wrote)\b", lower_q) or \
+                   lower_q.strip() == alias or lower_q.strip() == full_name.lower():
+                    sender_filter = full_name
+                    break
 
         # Temporal detection using fuzzy parser
         date_start, date_end = self.parse_fuzzy_temporal(lower_q)
@@ -229,6 +239,50 @@ class ChatSearchEngine:
                explicit_start: str = None,
                explicit_end: str = None) -> dict:
         t0 = time.time()
+
+        # 0. Check for Direct Message ID Lookup (e.g. "#840", "message #840", "840", "msg 1882")
+        raw_trimmed = query.strip()
+        target_id = None
+        m_id = re.search(r"(?:^|\s)(?:message\s*#?|msg\s*#?|id\s*#?|#)\s*(\d+)(?:\s|$)", raw_trimmed, re.IGNORECASE)
+        if not m_id:
+            m_id = re.search(r"^#?(\d+)$", raw_trimmed)
+        if m_id:
+            target_id = int(m_id.group(1))
+
+        if target_id is not None and target_id in self.id_to_idx:
+            idx = self.id_to_idx[target_id]
+            msg = self.corpus[idx]
+            start_c = max(0, idx - context_radius)
+            end_c = min(len(self.corpus), idx + context_radius + 1)
+            context_slice = [{
+                "id": c["id"],
+                "sender": c["sender"],
+                "timestamp": c["timestamp"],
+                "text": c["text"],
+                "is_target": (c["id"] == msg["id"])
+            } for c in self.corpus[start_c:end_c]]
+
+            exact_result = {
+                "message": msg,
+                "score": 1.0,
+                "context": context_slice
+            }
+
+            analysis = {
+                "original_query": raw_trimmed,
+                "clean_query": raw_trimmed,
+                "query_type": "exact_id",
+                "sender_filter": None,
+                "date_start": None,
+                "date_end": None
+            }
+            return {
+                "query_analysis": analysis,
+                "results": [exact_result],
+                "total_candidates": 1,
+                "latency_ms": round((time.time() - t0) * 1000, 2)
+            }
+
         self._ensure_model()
 
         if self.embeddings is None:
