@@ -14,9 +14,12 @@ import re
 import json
 import time
 import calendar
+import logging
 from datetime import datetime, timedelta
 from collections import Counter
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 PARTICIPANT_MAP = {
     "kabir": "Kabir Sharma",
@@ -94,7 +97,7 @@ class ChatSearchEngine:
         self.model_name = model_name
         self.model = None
 
-        print(f"Loading corpus from: {corpus_path}")
+        logger.info(f"Loading corpus from: {corpus_path}")
         with open(corpus_path, "r", encoding="utf-8") as f:
             self.corpus = json.load(f)
 
@@ -102,20 +105,29 @@ class ChatSearchEngine:
         self.timestamps = [datetime.fromisoformat(m["timestamp"]) for m in self.corpus]
         self.senders = np.array([m["sender"] for m in self.corpus])
 
+        # Auto-generate dynamic participant map from corpus senders
+        self.participant_map = {}
+        for m in self.corpus:
+            sender = m.get("sender", "")
+            if sender:
+                self.participant_map[sender.lower()] = sender
+                for part in sender.lower().split():
+                    self.participant_map[part] = sender
+
         # Precompute corpus text frequencies for duplicate/boilerplate suppression
         self.corpus_text_counts = Counter(m["text"].strip().lower() for m in self.corpus)
 
         if os.path.exists(embeddings_path):
-            print(f"Loading precomputed embeddings from: {embeddings_path}")
+            logger.info(f"Loading precomputed embeddings from: {embeddings_path}")
             self.embeddings = np.load(embeddings_path)
-            print(f"Loaded embeddings matrix: {self.embeddings.shape}")
+            logger.info(f"Loaded embeddings matrix: {self.embeddings.shape}")
         else:
             self.embeddings = None
 
     def _ensure_model(self):
         if self.model is None:
             from sentence_transformers import SentenceTransformer
-            print(f"Loading SentenceTransformer: {self.model_name}...")
+            logger.info(f"Loading SentenceTransformer: {self.model_name}...")
             self.model = SentenceTransformer(self.model_name)
 
     def parse_fuzzy_temporal(self, lower_q: str, year: int = 2024):
@@ -178,14 +190,15 @@ class ChatSearchEngine:
         sender_filter = None
         clean_terms = raw_query
 
-        # Speaker detection
+        # Speaker detection using instance map or module map
+        pmap = getattr(self, "participant_map", PARTICIPANT_MAP)
         m_spk = re.search(r"(?:what did|what was|from|by|told by|said by)\s+([a-zA-Z]+)", lower_q)
-        if m_spk and m_spk.group(1).lower() in PARTICIPANT_MAP:
-            sender_filter = PARTICIPANT_MAP[m_spk.group(1).lower()]
+        if m_spk and m_spk.group(1).lower() in pmap:
+            sender_filter = pmap[m_spk.group(1).lower()]
         elif re.search(r"\b([a-zA-Z]+)'s\b", lower_q):
             m_pos = re.search(r"\b([a-zA-Z]+)'s\b", lower_q)
-            if m_pos and m_pos.group(1).lower() in PARTICIPANT_MAP:
-                sender_filter = PARTICIPANT_MAP[m_pos.group(1).lower()]
+            if m_pos and m_pos.group(1).lower() in pmap:
+                sender_filter = pmap[m_pos.group(1).lower()]
 
         # Temporal detection using fuzzy parser
         date_start, date_end = self.parse_fuzzy_temporal(lower_q)

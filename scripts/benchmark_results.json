@@ -7,7 +7,7 @@
     "mrr": 0.908,
     "zero_lexical_total": 10,
     "zero_lexical_hit_at_3_pct": 100.0,
-    "avg_latency_ms": 565.25
+    "avg_latency_ms": 519.06
   },
   "query_results": [
     {
@@ -29,7 +29,7 @@
         818
       ],
       "passed": true,
-      "latency_ms": 21402.93
+      "latency_ms": 19601.09
     },
     {
       "id": 2,
@@ -50,7 +50,7 @@
         1882
       ],
       "passed": true,
-      "latency_ms": 37.2
+      "latency_ms": 38.88
     },
     {
       "id": 3,
@@ -71,7 +71,7 @@
         1823
       ],
       "passed": true,
-      "latency_ms": 33.12
+      "latency_ms": 36.86
     },
     {
       "id": 4,
@@ -92,7 +92,7 @@
         919
       ],
       "passed": true,
-      "latency_ms": 32.56
+      "latency_ms": 48.36
     },
     {
       "id": 5,
@@ -113,7 +113,7 @@
         896
       ],
       "passed": true,
-      "latency_ms": 34.29
+      "latency_ms": 34.74
     },
     {
       "id": 6,
@@ -134,7 +134,7 @@
         4227
       ],
       "passed": true,
-      "latency_ms": 38.99
+      "latency_ms": 33.95
     },
     {
       "id": 7,
@@ -155,7 +155,7 @@
         1735
       ],
       "passed": true,
-      "latency_ms": 37.68
+      "latency_ms": 41.78
     },
     {
       "id": 8,
@@ -176,7 +176,7 @@
         3450
       ],
       "passed": true,
-      "latency_ms": 35.69
+      "latency_ms": 36.51
     },
     {
       "id": 9,
@@ -197,7 +197,7 @@
         4189
       ],
       "passed": true,
-      "latency_ms": 35.98
+      "latency_ms": 33.72
     },
     {
       "id": 10,
@@ -218,7 +218,7 @@
         1100
       ],
       "passed": true,
-      "latency_ms": 41.48
+      "latency_ms": 37.68
     },
     {
       "id": 11,
@@ -239,7 +239,7 @@
         819
       ],
       "passed": true,
-      "latency_ms": 46.86
+      "latency_ms": 33.43
     },
     {
       "id": 12,
@@ -261,7 +261,7 @@
         1882
       ],
       "passed": true,
-      "latency_ms": 47.54
+      "latency_ms": 36.07
     },
     {
       "id": 13,
@@ -282,7 +282,7 @@
         3234
       ],
       "passed": true,
-      "latency_ms": 46.43
+      "latency_ms": 38.51
     },
     {
       "id": 14,
@@ -303,7 +303,7 @@
         1703
       ],
       "passed": true,
-      "latency_ms": 43.32
+      "latency_ms": 41.02
     },
     {
       "id": 15,
@@ -325,7 +325,7 @@
         3212
       ],
       "passed": true,
-      "latency_ms": 40.28
+      "latency_ms": 48.32
     },
     {
       "id": 16,
@@ -346,7 +346,7 @@
         4227
       ],
       "passed": true,
-      "latency_ms": 43.82
+      "latency_ms": 48.24
     },
     {
       "id": 17,
@@ -367,7 +367,7 @@
         819
       ],
       "passed": true,
-      "latency_ms": 28.51
+      "latency_ms": 21.97
     },
     {
       "id": 18,
@@ -388,7 +388,7 @@
         1882
       ],
       "passed": true,
-      "latency_ms": 21.65
+      "latency_ms": 27.28
     },
     {
       "id": 19,
@@ -409,7 +409,7 @@
         968
       ],
       "passed": true,
-      "latency_ms": 22.36
+      "latency_ms": 31.13
     },
     {
       "id": 20,
@@ -430,7 +430,7 @@
         1100
       ],
       "passed": true,
-      "latency_ms": 25.86
+      "latency_ms": 23.89
     },
     {
       "id": 21,
@@ -451,7 +451,7 @@
         1476
       ],
       "passed": true,
-      "latency_ms": 30.95
+      "latency_ms": 21.74
     },
     {
       "id": 22,
@@ -472,7 +472,7 @@
         1604
       ],
       "passed": true,
-      "latency_ms": 31.49
+      "latency_ms": 24.61
     },
     {
       "id": 23,
@@ -493,7 +493,7 @@
         3354
       ],
       "passed": true,
-      "latency_ms": 30.42
+      "latency_ms": 20.84
     },
     {
       "id": 24,
@@ -514,7 +514,7 @@
         4227
       ],
       "passed": true,
-      "latency_ms": 28.03
+      "latency_ms": 24.92
     },
     {
       "id": 25,
@@ -535,7 +535,7 @@
         938
       ],
       "passed": true,
-      "latency_ms": 28.29
+      "latency_ms": 25.23
     },
     {
       "id": 26,
@@ -556,7 +556,7 @@
         3035
       ],
       "passed": true,
-      "latency_ms": 27.87
+      "latency_ms": 20.92
     },
     {
       "id": 27,
@@ -577,7 +577,7 @@
         1604
       ],
       "passed": true,
-      "latency_ms": 23.77
+      "latency_ms": 25.04
     },
     {
       "id": 28,
@@ -598,7 +598,7 @@
         864
       ],
       "passed": true,
-      "latency_ms": 25.14
+      "latency_ms": 22.07
     },
     {
       "id": 29,
@@ -620,7 +620,7 @@
         919
       ],
       "passed": true,
-      "latency_ms": 19.42
+      "latency_ms": 23.85
     },
     {
       "id": 30,
@@ -641,7 +641,7 @@
         840
       ],
       "passed": true,
-      "latency_ms": 24.53
+      "latency_ms": 24.69
     },
     {
       "id": 31,
@@ -662,7 +662,7 @@
         1148
       ],
       "passed": true,
-      "latency_ms": 24.35
+      "latency_ms": 20.46
     },
     {
       "id": 32,
@@ -683,7 +683,7 @@
         1604
       ],
       "passed": true,
-      "latency_ms": 24.84
+      "latency_ms": 21.78
     },
     {
       "id": 33,
@@ -704,7 +704,7 @@
         1653
       ],
       "passed": true,
-      "latency_ms": 25.58
+      "latency_ms": 24.47
     },
     {
       "id": 34,
@@ -725,7 +725,7 @@
         2122
       ],
       "passed": true,
-      "latency_ms": 29.44
+      "latency_ms": 20.79
     },
     {
       "id": 35,
@@ -746,7 +746,7 @@
         2348
       ],
       "passed": true,
-      "latency_ms": 25.4
+      "latency_ms": 24.64
     },
     {
       "id": 36,
@@ -764,7 +764,7 @@
         2381
       ],
       "passed": true,
-      "latency_ms": 20.72
+      "latency_ms": 30.32
     },
     {
       "id": 37,
@@ -786,7 +786,7 @@
         2875
       ],
       "passed": true,
-      "latency_ms": 25.62
+      "latency_ms": 21.92
     },
     {
       "id": 38,
@@ -806,7 +806,7 @@
         3261
       ],
       "passed": true,
-      "latency_ms": 25.57
+      "latency_ms": 22.26
     },
     {
       "id": 39,
@@ -826,7 +826,7 @@
         3768
       ],
       "passed": true,
-      "latency_ms": 21.74
+      "latency_ms": 26.21
     },
     {
       "id": 40,
@@ -845,7 +845,7 @@
         3996
       ],
       "passed": true,
-      "latency_ms": 20.36
+      "latency_ms": 22.39
     }
   ]
 }

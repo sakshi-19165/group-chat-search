@@ -11,18 +11,33 @@ import os
 import sys
 import json
 import time
+import asyncio
+import logging
 import httpx
 from typing import Optional
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
-PROJECT_ROOT = r"D:\group-chat-search"
+# Structured Logging configuration
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+)
+logger = logging.getLogger("server.app")
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 
 from engine.search import ChatSearchEngine
+
+# Initialize SlowAPI rate limiter
+limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(
     title="Search a Group Chat Properly",
@@ -30,9 +45,24 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+# Restrict CORS to trusted origins (customizable via ALLOWED_ORIGINS env var)
+allowed_origins_env = os.environ.get("ALLOWED_ORIGINS")
+if allowed_origins_env:
+    allowed_origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+else:
+    allowed_origins = [
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3000",
+    ]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -49,7 +79,9 @@ engine: Optional[ChatSearchEngine] = None
 def get_engine() -> ChatSearchEngine:
     global engine
     if engine is None:
+        logger.info("Initializing ChatSearchEngine singleton...")
         engine = ChatSearchEngine(CORPUS_PATH, EMBEDDINGS_PATH)
+        logger.info("ChatSearchEngine singleton initialized.")
     return engine
 
 # Pydantic models
@@ -92,6 +124,7 @@ async def search_endpoint(req: SearchRequest):
         )
         return results
     except Exception as e:
+        logger.error(f"Search failed for query '{req.query}': {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -105,7 +138,8 @@ async def context_endpoint(message_id: int, radius: int = 5):
 
 
 @app.post("/api/chat")
-async def chat_endpoint(req: ChatRequest):
+@limiter.limit("10/minute")
+async def chat_endpoint(request: Request, req: ChatRequest):
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="Query cannot be empty.")
     eng = get_engine()
@@ -134,60 +168,84 @@ async def chat_endpoint(req: ChatRequest):
 
     api_key = os.environ.get("OPENROUTER_API_KEY", "")
 
-    # Attempt LLM synthesis via OpenRouter
+    # Conversational LLM Synthesis via OpenRouter
     if api_key:
         system_prompt = (
-            "You are an intelligent group chat assistant. Answer the user's question directly, accurately, "
-            "and concisely based strictly on the retrieved chat snippets. "
-            "You MUST cite exact message IDs like [#123] whenever making a statement. "
-            "Explain any Hinglish slang if helpful. Never hallucinate or assume facts not present in the chat."
+            "You are a friendly, perceptive, and natural AI copilot for a group chat of close friends and colleagues. "
+            "Your job is to explain the narrative and give a clear, conversational summary of the situation instead of just giving a dry citation or robotic response.\n\n"
+            "How to answer:\n"
+            "1. Conversational Summary: First explain the situation clearly — what was discussed, who was involved, how the decision unfolded, and what the group concluded or agreed upon.\n"
+            "2. Natural Voice: Speak warmly and casually like a friend who remembers the conversation well. Highlight the banter, excitement, compromises, or reasoning behind what people said.\n"
+            "3. Hinglish & Slang Interpretation: Naturally translate and contextualize any code-mixed Hinglish phrases, Indian slang, or colloquial expressions (e.g. 'kiraya', 'hisab kitab', 'pahadon me chalte hain', 'sorted') so the situation is crystal clear.\n"
+            "4. Embedded Citations: Integrate citations smoothly into your narrative sentences using [#MessageID] (e.g., 'Kabir initially proposed going to Manali [#840], which kicked off a debate about expenses until Tanvi confirmed the villa [#846]').\n"
+            "5. Accuracy: Ground all facts, numbers, dates, and names strictly in the retrieved chat context."
         )
-        user_prompt = f"Question: {req.query}\n\nGroup Chat Context:\n{context_prompt_text}\n\nAnswer:"
+        user_prompt = f"Question: {req.query}\n\nRetrieved Group Chat Messages:\n{context_prompt_text}\n\nConversational Summary:"
 
-        payload = {
-            "model": "google/gemma-3n-e4b-it:free",
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-            "temperature": 0.2,
-            "max_tokens": 500
-        }
+        candidate_models = [
+            os.environ.get("OPENROUTER_MODEL", "meta-llama/llama-3.3-70b-instruct"),
+            "meta-llama/llama-3.3-70b-instruct:free",
+            "google/gemini-2.0-flash-exp:free",
+            "mistralai/mistral-small-24b-instruct-2501:free"
+        ]
 
-        try:
-            async with httpx.AsyncClient(timeout=25.0) as client:
-                resp = await client.post(
-                    "https://openrouter.ai/api/v1/chat/completions",
-                    headers={
-                        "Authorization": f"Bearer {api_key}",
-                        "Content-Type": "application/json",
-                        "HTTP-Referer": "http://127.0.0.1:8000",
-                        "X-Title": "Proper Group Chat Search"
-                    },
-                    json=payload
-                )
-                if resp.status_code == 200:
-                    data = resp.json()
-                    answer = data["choices"][0]["message"]["content"]
-                    return {
-                        "answer": answer,
-                        "cited_messages": cited_messages,
-                        "query_analysis": search_res.get("query_analysis", {})
-                    }
-                else:
-                    print(f"OpenRouter response code: {resp.status_code}, falling back to local synthesis")
-        except Exception as err:
-            print(f"OpenRouter call failed: {err}, using fallback synthesis")
+        for model_name in candidate_models:
+            payload = {
+                "model": model_name,
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                "temperature": 0.35,
+                "max_tokens": 1000
+            }
 
-    # Local Fallback Synthesizer
+            try:
+                async with httpx.AsyncClient(timeout=25.0) as client:
+                    resp = await client.post(
+                        "https://openrouter.ai/api/v1/chat/completions",
+                        headers={
+                            "Authorization": f"Bearer {api_key}",
+                            "Content-Type": "application/json",
+                            "HTTP-Referer": "http://127.0.0.1:8000",
+                            "X-Title": "Proper Group Chat Search"
+                        },
+                        json=payload
+                    )
+
+                    if resp.status_code == 200:
+                        data = resp.json()
+                        answer = data["choices"][0]["message"]["content"]
+                        logger.info(f"Chat synthesis successful using model {model_name}")
+                        return {
+                            "answer": answer,
+                            "cited_messages": cited_messages,
+                            "query_analysis": search_res.get("query_analysis", {}),
+                            "model": model_name
+                        }
+                    elif resp.status_code == 401:
+                        logger.error("OpenRouter authentication failed (401). Please check OPENROUTER_API_KEY.")
+                        break  # Auth error, no need to retry other models
+                    else:
+                        logger.warning(f"Model {model_name} returned status {resp.status_code}: {resp.text[:150]}, attempting fallback model...")
+            except httpx.RequestError as req_err:
+                logger.warning(f"Request error calling {model_name}: {req_err}, attempting fallback model...")
+
+    # Conversational Local Fallback Synthesizer (when offline or API key absent)
+    senders = list(dict.fromkeys(r["message"]["sender"] for r in results))
     top_m = results[0]["message"]
+    formatted_date = top_m["timestamp"][:10]
+    
     fallback_answer = (
-        f"Based on the conversation records, **{top_m['sender']}** stated on {top_m['timestamp'][:10]}: "
-        f"\"{top_m['text']}\" [#{top_m['id']}]. "
+        f"Here is a summary of the discussion regarding **{req.query}** involving {', '.join(senders)}:\n\n"
+        f"On {formatted_date}, **{top_m['sender']}** discussed this directly: *\"{top_m['text']}\"* [#{top_m['id']}]. "
     )
     if len(results) > 1:
         second_m = results[1]["message"]
-        fallback_answer += f"Additionally, **{second_m['sender']}** noted: \"{second_m['text']}\" [#{second_m['id']}]."
+        fallback_answer += f"\n\nIn the same thread, **{second_m['sender']}** added: *\"{second_m['text']}\"* [#{second_m['id']}]."
+    if len(results) > 2:
+        third_m = results[2]["message"]
+        fallback_answer += f" Further in the discussion, **{third_m['sender']}** followed up: *\"{third_m['text']}\"* [#{third_m['id']}]."
 
     return {
         "answer": fallback_answer,
@@ -326,5 +384,13 @@ if os.path.exists(WEB_DIR):
     app.mount("/", StaticFiles(directory=WEB_DIR, html=True), name="web")
 
 if __name__ == "__main__":
+    import argparse
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    
+    parser = argparse.ArgumentParser(description="Search a Group Chat Properly API Server")
+    parser.add_argument("--host", default=os.environ.get("HOST", "127.0.0.1"), help="Host IP to bind (use 0.0.0.0 for LAN access)")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8000)), help="Port number (default: 8000)")
+    args = parser.parse_args()
+
+    print(f"Starting server on http://{args.host}:{args.port}")
+    uvicorn.run(app, host=args.host, port=args.port)

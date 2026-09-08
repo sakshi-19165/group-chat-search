@@ -9,7 +9,7 @@ import json
 import random
 from datetime import datetime, timedelta
 
-TARGET_DIR = r"D:\group-chat-search\dataset"
+TARGET_DIR = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(TARGET_DIR, exist_ok=True)
 
 random.seed(42)

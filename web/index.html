@@ -7,7 +7,8 @@
   <meta name="description" content="Context-aware semantic search engine and conversational AI copilot for code-mixed Hinglish group chats.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,19 +17,36 @@
   <header>
     <div class="header-container">
       <div class="brand">
-        <div class="brand-icon">💬</div>
-        <div class="brand-title">Search a Group Chat Properly</div>
-        <span class="brand-badge" id="headerCorpusBadge">4,250 Messages • 8 Users • 6 Months</span>
+        <div class="brand-icon-wrapper">
+          <img src="assets/logo.png" alt="Group Chat Search Logo" class="brand-logo-img" />
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">Search a Group Chat Properly</span>
+          <span class="brand-badge" id="headerCorpusBadge">
+            <span class="pulse-dot"></span>
+            <span>4,250 Messages • 8 Users • 6 Months</span>
+          </span>
+        </div>
       </div>
       <nav class="tab-nav">
         <button class="tab-btn active" data-tab="search-view" id="tabSearchBtn">
-          <span>🔍</span> Search
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Search</span>
         </button>
         <button class="tab-btn" data-tab="chat-view" id="tabChatBtn">
-          <span>🤖</span> Chat Copilot
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Chat Copilot</span>
         </button>
         <button class="tab-btn" data-tab="benchmark-view" id="tabBenchmarkBtn">
-          <span>⚡</span> Benchmark Suite
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>Benchmark Suite</span>
         </button>
       </nav>
     </div>
@@ -41,26 +59,60 @@
     <section class="view-panel active" id="search-view">
       <div class="search-hero">
         <div class="search-input-wrapper">
-          <span class="search-icon">🔍</span>
+          <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
           <input 
             type="text" 
             id="searchInput" 
             class="search-input" 
-            placeholder="Search meaning, decisions, or ask what Priya said... (e.g., 'when did we decide on the trip')"
+            placeholder="Search decisions, plans, or questions... (e.g. 'when did we plan the trip' or 'who paid rent?')"
             autocomplete="off"
+            spellcheck="false"
           />
-          <button class="search-action-btn" id="searchSubmitBtn">Search</button>
+          <div class="input-actions">
+            <button class="clear-search-btn" id="clearSearchBtn" title="Clear search" style="display: none;">✕</button>
+            <span class="kbd-shortcut">Ctrl+K</span>
+            <button class="search-action-btn" id="searchSubmitBtn">Search</button>
+          </div>
         </div>
 
         <div class="query-suggestions">
-          <span class="suggestion-label">Try queries:</span>
+          <div class="suggestion-header">
+            <span class="suggestion-label">💡 Popular questions you can test right now:</span>
+          </div>
           <div class="suggestion-chips-grid">
-            <button class="suggestion-chip" data-query="When was the vacation destination finalized?">🏖️ Destination finalized (Zero overlap)</button>
-            <button class="suggestion-chip" data-query="Who volunteered to manage the shared finances?">📊 Manage finances (Zero overlap)</button>
-            <button class="suggestion-chip" data-query="what did Priya say about the trip budget ceiling">👤 Priya on budget (Attributed)</button>
-            <button class="suggestion-chip" data-query="what happened during the road trip on June 15 or 16">📅 June 15 trip (Temporal)</button>
-            <button class="suggestion-chip" data-query="What was the agreed monthly apartment payment?">🏠 Monthly rent (Zero overlap)</button>
-            <button class="suggestion-chip" data-query="What is the team's software presentation deadline?">⏱️ Pitch deadline (Zero overlap)</button>
+            <button class="suggestion-chip" data-query="When was the vacation destination finalized?">
+              <span class="chip-emoji">🏖️</span>
+              <span>Vacation destination finalized</span>
+              <span class="chip-tag zero">Zero-word match</span>
+            </button>
+            <button class="suggestion-chip" data-query="Who volunteered to manage the shared finances?">
+              <span class="chip-emoji">💰</span>
+              <span>Who volunteered to manage finances?</span>
+              <span class="chip-tag zero">Zero-word match</span>
+            </button>
+            <button class="suggestion-chip" data-query="what did Priya say about the trip budget ceiling">
+              <span class="chip-emoji">👤</span>
+              <span>Priya's budget ceiling</span>
+              <span class="chip-tag attributed">By Person</span>
+            </button>
+            <button class="suggestion-chip" data-query="what happened during the road trip on June 15 or 16">
+              <span class="chip-emoji">📅</span>
+              <span>Road trip on June 15</span>
+              <span class="chip-tag temporal">By Date</span>
+            </button>
+            <button class="suggestion-chip" data-query="What was the agreed monthly apartment payment?">
+              <span class="chip-emoji">🏠</span>
+              <span>Agreed monthly apartment rent</span>
+              <span class="chip-tag zero">Zero-word match</span>
+            </button>
+            <button class="suggestion-chip" data-query="What is the team's software presentation deadline?">
+              <span class="chip-emoji">⏱️</span>
+              <span>Software pitch deadline</span>
+              <span class="chip-tag zero">Zero-word match</span>
+            </button>
           </div>
         </div>
       </div>
@@ -73,21 +125,59 @@
           <span id="temporalChip" style="display: none;" class="shape-badge temporal"></span>
         </div>
         <div class="analysis-info" id="analysisMetaText">
-          Found 10 matching messages in 4.2ms
+          Found 8 matching conversation bursts
         </div>
       </div>
 
       <!-- Results Container -->
       <div id="resultsContainer">
         <div class="results-header" id="resultsHeader" style="display: none;">
-          <span>Relevant Conversation Snippets (with surrounding context)</span>
+          <span>Relevant Conversation Bursts (with surrounding context)</span>
           <span id="matchStats"></span>
         </div>
         <div class="results-list" id="resultsList">
-          <div class="empty-state" id="searchEmptyState">
-            <div class="empty-state-icon">🔎</div>
-            <div class="empty-state-title">Type a query or click one of the suggested prompts above</div>
-            <div class="empty-state-subtitle">Search will find messages even when words have zero lexical overlap or use code-mixed Hinglish.</div>
+          <div class="onboarding-guide" id="searchEmptyState">
+            <div class="onboarding-hero">
+              <div class="onboarding-icon-badge">
+                <img src="assets/logo.png" alt="Group Chat Search" class="hero-logo-img" />
+              </div>
+              <h2 class="onboarding-title">Find decisions and discussions in seconds</h2>
+              <p class="onboarding-subtitle">
+                Search across 4,250 group chat messages using natural language, sender names, or dates — even with zero keyword overlap.
+              </p>
+            </div>
+
+            <div class="features-grid">
+              <div class="feature-card">
+                <div class="feature-icon-title">
+                  <span class="feature-emoji">🗣️</span>
+                  <span>Code-Mixed Hinglish</span>
+                </div>
+                <p class="feature-desc">
+                  Understands blended phrasing like <em>"kiraya kitna tha"</em>, <em>"hisab kitab"</em>, or <em>"trip fix"</em>. Searches meanings, not just exact keywords.
+                </p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon-title">
+                  <span class="feature-emoji">📜</span>
+                  <span>Conversational Bursts</span>
+                </div>
+                <p class="feature-desc">
+                  Never shows an isolated one-liner. Every result includes 3 messages before and after so you see the complete discussion flow.
+                </p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon-title">
+                  <span class="feature-emoji">🤖</span>
+                  <span>AI Chat Copilot</span>
+                </div>
+                <p class="feature-desc">
+                  Need a direct synthesis? Jump to the Copilot tab to ask questions and receive answers backed by exact message citations.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -97,24 +187,59 @@
     <section class="view-panel" id="chat-view">
       <div class="chat-container">
         <div class="chat-messages" id="chatMessages">
-          <div class="chat-row">
-            <div class="chat-avatar assistant">AI</div>
-            <div class="chat-content">
-              Hello! I'm your group chat copilot. I answer questions directly by looking up the 4,250 messages across our 6-month history and quoting exact message references. 
-              <br><br>
-              Try asking: <em>"When did we decide on Manali and what was the budget?"</em> or <em>"Summarize Tanvi's updates on the Indiranagar flat."</em>
+          <div class="chat-empty-state" id="chatEmptyState">
+            <div class="chat-welcome-icon">
+              <img src="assets/logo.png" alt="AI Copilot Logo" class="copilot-logo-img" />
+            </div>
+            <h2 class="chat-welcome-title">Chat with your Group Chat History</h2>
+            <p class="chat-welcome-desc">
+              I've indexed all 4,250 messages across our 6-month history. Ask about decisions, rent splits, travel plans, or summaries.
+            </p>
+            <div class="chat-prompt-cards">
+              <div class="chat-prompt-card" data-prompt="When did we decide on Manali and what was the budget ceiling?">
+                <div class="prompt-icon-badge">🏖️</div>
+                <div class="prompt-details">
+                  <div class="chat-prompt-title">Trip Destination & Budget</div>
+                  <div class="chat-prompt-query">"When did we decide on Manali and what was the budget?"</div>
+                  <div class="chat-prompt-action">Click to ask →</div>
+                </div>
+              </div>
+              <div class="chat-prompt-card" data-prompt="What was the agreed monthly rent and deposit for the Indiranagar flat?">
+                <div class="prompt-icon-badge">🏠</div>
+                <div class="prompt-details">
+                  <div class="chat-prompt-title">Apartment Agreement</div>
+                  <div class="chat-prompt-query">"What is the monthly rent and deposit for the Indiranagar flat?"</div>
+                  <div class="chat-prompt-action">Click to ask →</div>
+                </div>
+              </div>
+              <div class="chat-prompt-card" data-prompt="Summarize Tanvi's updates regarding the apartment inspection and deposit.">
+                <div class="prompt-icon-badge">📋</div>
+                <div class="prompt-details">
+                  <div class="chat-prompt-title">Participant Summary</div>
+                  <div class="chat-prompt-query">"Summarize Tanvi's updates on the Indiranagar flat."</div>
+                  <div class="chat-prompt-action">Click to ask →</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="chat-input-bar">
-          <input 
-            type="text" 
-            id="chatInput" 
-            class="chat-input" 
-            placeholder="Ask a question about the group chat decisions..."
-            autocomplete="off"
-          />
-          <button class="search-action-btn" id="chatSendBtn">Send</button>
+          <div class="chat-input-wrapper">
+            <input 
+              type="text" 
+              id="chatInput" 
+              class="chat-input" 
+              placeholder="Ask anything about the group chat... (e.g., 'What was the plan for Goa?' or 'Who paid for dinner?')"
+              autocomplete="off"
+            />
+          </div>
+          <button class="chat-send-btn" id="chatSendBtn" title="Send message">
+            <span>Send</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
         </div>
       </div>
     </section>
@@ -123,13 +248,16 @@
     <section class="view-panel" id="benchmark-view">
       <div class="benchmark-top">
         <div>
-          <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">40-Query Benchmark Evaluation Suite</h2>
-          <p style="font-size: 13px; color: var(--text-secondary);">
-            Automated test suite measuring Hit@1, Hit@3, Hit@5, MRR, and zero-lexical overlap comprehension.
+          <h2 class="benchmark-heading">40-Query Benchmark Evaluation Suite</h2>
+          <p class="benchmark-subtext">
+            Automated quality evaluation suite testing Hit@1, Hit@3, Hit@5, MRR, and zero-keyword comprehension across 4,250 real messages.
           </p>
         </div>
         <button class="benchmark-btn" id="runBenchmarkBtn">
-          <span>▶</span> Run 40 Benchmark Queries
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Run 40 Benchmark Queries</span>
         </button>
       </div>
 
@@ -150,14 +278,14 @@
           <span class="metric-desc">Correct answer in Top 3</span>
         </div>
         <div class="metric-card">
-          <span class="metric-title">Mean Reciprocal Rank (MRR)</span>
+          <span class="metric-title">Mean Reciprocal Rank</span>
           <span class="metric-value" id="metricMRR">--</span>
           <span class="metric-desc">Overall ranking quality (0 to 1.0)</span>
         </div>
         <div class="metric-card">
           <span class="metric-title">Average Latency</span>
           <span class="metric-value" id="metricLatency">-- ms</span>
-          <span class="metric-desc">Sub-millisecond dot-product retrieval</span>
+          <span class="metric-desc">Sub-millisecond retrieval</span>
         </div>
       </div>
 
@@ -175,8 +303,8 @@
             <tr>
               <th style="width: 50px;">#</th>
               <th>Query</th>
-              <th style="width: 100px;">Type</th>
-              <th style="width: 90px;">Zero Overlap</th>
+              <th style="width: 110px;">Type</th>
+              <th style="width: 110px;">Zero Overlap</th>
               <th style="width: 90px;">Target ID</th>
               <th style="width: 80px;">Rank</th>
               <th style="width: 80px;">Status</th>
@@ -187,16 +315,20 @@
       </div>
 
       <div id="benchmarkPlaceholder" class="empty-state">
-        <div class="empty-state-icon">⚡</div>
+        <div class="empty-state-icon-wrapper">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
         <div class="empty-state-title">Click "Run 40 Benchmark Queries" to evaluate accuracy</div>
-        <div class="empty-state-subtitle">Evaluates all three query shapes and explicitly validates zero-lexical overlap test cases.</div>
+        <div class="empty-state-subtitle">Evaluates all 40 test cases, verifying temporal range filters, speaker attribution, and zero-lexical overlap comprehension.</div>
       </div>
     </section>
 
   </main>
 
   <footer>
-    Search a Group Chat Properly • Multilingual Semantic Indexing • Hinglish Code-Mixing Engine
+    Search a Group Chat Properly • Context-Aware Semantic Search & Hinglish Retrieval Engine
   </footer>
 
   <script src="app.js"></script>
