@@ -1,0 +1,851 @@
+{
+  "metrics": {
+    "total_queries": 40,
+    "hit_at_1_pct": 82.5,
+    "hit_at_3_pct": 100.0,
+    "hit_at_5_pct": 100.0,
+    "mrr": 0.908,
+    "zero_lexical_total": 10,
+    "zero_lexical_hit_at_3_pct": 100.0,
+    "avg_latency_ms": 565.25
+  },
+  "query_results": [
+    {
+      "id": 1,
+      "query": "When was the vacation destination finalized?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        840
+      ],
+      "matched_target_id": 840,
+      "target_text": "chalo Manali fix hai, pahadon me chalte hain",
+      "rank": 1,
+      "retrieved_ids": [
+        840,
+        919,
+        1100,
+        935,
+        818
+      ],
+      "passed": true,
+      "latency_ms": 21402.93
+    },
+    {
+      "id": 2,
+      "query": "Who volunteered to manage the shared finances?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        2294
+      ],
+      "matched_target_id": 2294,
+      "target_text": "main sara hisab kitab excel sheet me track karungi",
+      "rank": 2,
+      "retrieved_ids": [
+        1899,
+        2294,
+        1000,
+        1920,
+        1882
+      ],
+      "passed": true,
+      "latency_ms": 37.2
+    },
+    {
+      "id": 3,
+      "query": "What was the agreed monthly apartment payment?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        1882
+      ],
+      "matched_target_id": 1882,
+      "target_text": "kiraya chaunvan hazaar hai, teen logon me split hoga",
+      "rank": 1,
+      "retrieved_ids": [
+        1882,
+        4189,
+        1920,
+        1604,
+        1823
+      ],
+      "passed": true,
+      "latency_ms": 33.12
+    },
+    {
+      "id": 4,
+      "query": "Did anyone get sick during the mountain getaway?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        1148
+      ],
+      "matched_target_id": 1148,
+      "target_text": "Kabir ko altitude pe chakkar aa rahe the, rest karna pada",
+      "rank": 1,
+      "retrieved_ids": [
+        1148,
+        1100,
+        840,
+        818,
+        919
+      ],
+      "passed": true,
+      "latency_ms": 32.56
+    },
+    {
+      "id": 5,
+      "query": "Who agreed to supply the kitchen cooling appliance?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        2235
+      ],
+      "matched_target_id": 2235,
+      "target_text": "purana fridge mere ghar se shift karwa denge",
+      "rank": 1,
+      "retrieved_ids": [
+        2235,
+        2875,
+        1326,
+        2273,
+        896
+      ],
+      "passed": true,
+      "latency_ms": 34.29
+    },
+    {
+      "id": 6,
+      "query": "What is the team's software presentation deadline?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        3234
+      ],
+      "matched_target_id": 3234,
+      "target_text": "pachees tareekh raat barah baje se pehle deck submit karni hai",
+      "rank": 1,
+      "retrieved_ids": [
+        3234,
+        3450,
+        3426,
+        3669,
+        4227
+      ],
+      "passed": true,
+      "latency_ms": 38.99
+    },
+    {
+      "id": 7,
+      "query": "Where are travelers staying during the hill station holiday?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        935
+      ],
+      "matched_target_id": 935,
+      "target_text": "Old Manali me wooden cottage mil gaya, 1200 per night",
+      "rank": 1,
+      "retrieved_ids": [
+        935,
+        919,
+        840,
+        818,
+        1735
+      ],
+      "passed": true,
+      "latency_ms": 37.68
+    },
+    {
+      "id": 8,
+      "query": "Who is responsible for constructing the server endpoints?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        3120
+      ],
+      "matched_target_id": 3120,
+      "target_text": "backend routes aur database models main sambhalta hoon",
+      "rank": 1,
+      "retrieved_ids": [
+        3120,
+        3072,
+        3093,
+        3286,
+        3450
+      ],
+      "passed": true,
+      "latency_ms": 35.69
+    },
+    {
+      "id": 9,
+      "query": "What was the landlord's upfront financial security requirement?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        1920
+      ],
+      "matched_target_id": 1920,
+      "target_text": "broker bol raha hai dhaii lakh advance mangta hai",
+      "rank": 1,
+      "retrieved_ids": [
+        1920,
+        1882,
+        1823,
+        1703,
+        4189
+      ],
+      "passed": true,
+      "latency_ms": 35.98
+    },
+    {
+      "id": 10,
+      "query": "Did someone inspect the vehicle condition before departure?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": true,
+      "target_ids": [
+        1055
+      ],
+      "matched_target_id": 1055,
+      "target_text": "gaadi ki servicing aur tyre check karwa liye hain",
+      "rank": 1,
+      "retrieved_ids": [
+        1055,
+        969,
+        2122,
+        2273,
+        1100
+      ],
+      "passed": true,
+      "latency_ms": 41.48
+    },
+    {
+      "id": 11,
+      "query": "Which car was booked for the road trip?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        968
+      ],
+      "matched_target_id": 968,
+      "target_text": "Scorpio book kar li, self drive, Rohan chalayega",
+      "rank": 1,
+      "retrieved_ids": [
+        968,
+        1055,
+        2122,
+        1019,
+        819
+      ],
+      "passed": true,
+      "latency_ms": 46.86
+    },
+    {
+      "id": 12,
+      "query": "What is the per person budget cap for Manali?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1000,
+        1001
+      ],
+      "matched_target_id": 1001,
+      "target_text": "per head 8500 se zyada nahi, Priya track karegi",
+      "rank": 2,
+      "retrieved_ids": [
+        1604,
+        1001,
+        1899,
+        1920,
+        1882
+      ],
+      "passed": true,
+      "latency_ms": 47.54
+    },
+    {
+      "id": 13,
+      "query": "When did we lock the trip travel dates?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        896
+      ],
+      "matched_target_id": 896,
+      "target_text": "14 se 18 June pakka, leave apply kar lo sab",
+      "rank": 1,
+      "retrieved_ids": [
+        896,
+        843,
+        2122,
+        840,
+        3234
+      ],
+      "passed": true,
+      "latency_ms": 46.43
+    },
+    {
+      "id": 14,
+      "query": "When is the official moving date for the flat?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        2122
+      ],
+      "matched_target_id": 2122,
+      "target_text": "pehli August ko shifting final, tempo book karo",
+      "rank": 2,
+      "retrieved_ids": [
+        1653,
+        2122,
+        1882,
+        1899,
+        1703
+      ],
+      "passed": true,
+      "latency_ms": 43.32
+    },
+    {
+      "id": 15,
+      "query": "What startup product are we building for the hackathon?",
+      "query_type": "semantic",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3012,
+        2979
+      ],
+      "matched_target_id": 2979,
+      "target_text": "group chat search tool banate hain, semantic search wala",
+      "rank": 1,
+      "retrieved_ids": [
+        2979,
+        3012,
+        3035,
+        3846,
+        3212
+      ],
+      "passed": true,
+      "latency_ms": 40.28
+    },
+    {
+      "id": 16,
+      "query": "Where can the team find the new project repo to fork",
+      "query_type": "semantic",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3309
+      ],
+      "matched_target_id": 3309,
+      "target_text": "repo bana diya hai, sab log fork kar lo",
+      "rank": 1,
+      "retrieved_ids": [
+        3309,
+        3450,
+        3669,
+        1941,
+        4227
+      ],
+      "passed": true,
+      "latency_ms": 43.82
+    },
+    {
+      "id": 17,
+      "query": "what did Kabir specify about the trip budget ceiling",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1000
+      ],
+      "matched_target_id": 1000,
+      "target_text": "per head 8500 se zyada nahi, Priya track karegi",
+      "rank": 1,
+      "retrieved_ids": [
+        1000,
+        1747,
+        840,
+        1073,
+        819
+      ],
+      "passed": true,
+      "latency_ms": 28.51
+    },
+    {
+      "id": 18,
+      "query": "what did Tanvi say about the broker for the 3BHK flat",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1703
+      ],
+      "matched_target_id": 1703,
+      "target_text": "Ramesh broker ka number hai, 3BHK dikhayega kal",
+      "rank": 2,
+      "retrieved_ids": [
+        1653,
+        1703,
+        1920,
+        1575,
+        1882
+      ],
+      "passed": true,
+      "latency_ms": 21.65
+    },
+    {
+      "id": 19,
+      "query": "what did Vikram suggest for the backend tech stack",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3072
+      ],
+      "matched_target_id": 3072,
+      "target_text": "FastAPI backend aur React frontend, Postgres use karte hain",
+      "rank": 3,
+      "retrieved_ids": [
+        3286,
+        3120,
+        3072,
+        3669,
+        968
+      ],
+      "passed": true,
+      "latency_ms": 22.36
+    },
+    {
+      "id": 20,
+      "query": "what did Rohan report about the vehicle servicing",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1055
+      ],
+      "matched_target_id": 1055,
+      "target_text": "gaadi ki servicing aur tyre check karwa liye hain",
+      "rank": 1,
+      "retrieved_ids": [
+        1055,
+        969,
+        176,
+        3524,
+        1100
+      ],
+      "passed": true,
+      "latency_ms": 25.86
+    },
+    {
+      "id": 21,
+      "query": "what was Sneha's proposal for the wooden cottage in Old Manali",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        935
+      ],
+      "matched_target_id": 935,
+      "target_text": "Old Manali me wooden cottage mil gaya, 1200 per night",
+      "rank": 1,
+      "retrieved_ids": [
+        935,
+        919,
+        2273,
+        3165,
+        1476
+      ],
+      "passed": true,
+      "latency_ms": 30.95
+    },
+    {
+      "id": 22,
+      "query": "what did Priya say about tracking expenses in excel",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        2294
+      ],
+      "matched_target_id": 2294,
+      "target_text": "main sara hisab kitab excel sheet me track karungi",
+      "rank": 1,
+      "retrieved_ids": [
+        2294,
+        1001,
+        1242,
+        1019,
+        1604
+      ],
+      "passed": true,
+      "latency_ms": 31.49
+    },
+    {
+      "id": 23,
+      "query": "what did Arjun offer regarding the refrigerator",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        2235
+      ],
+      "matched_target_id": 2235,
+      "target_text": "purana fridge mere ghar se shift karwa denge",
+      "rank": 1,
+      "retrieved_ids": [
+        2235,
+        1038,
+        1941,
+        1899,
+        3354
+      ],
+      "passed": true,
+      "latency_ms": 30.42
+    },
+    {
+      "id": 24,
+      "query": "what was Kabir's announcement about the hackathon results",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3846
+      ],
+      "matched_target_id": 3846,
+      "target_text": "guys we secured 2nd place in the AI category!",
+      "rank": 2,
+      "retrieved_ids": [
+        2979,
+        3846,
+        2199,
+        896,
+        4227
+      ],
+      "passed": true,
+      "latency_ms": 28.03
+    },
+    {
+      "id": 25,
+      "query": "what did Ananya say about Kabir's altitude sickness",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1148
+      ],
+      "matched_target_id": 1148,
+      "target_text": "Kabir ko altitude pe chakkar aa rahe the, rest karna pada",
+      "rank": 1,
+      "retrieved_ids": [
+        1148,
+        362,
+        3768,
+        2428,
+        938
+      ],
+      "passed": true,
+      "latency_ms": 28.29
+    },
+    {
+      "id": 26,
+      "query": "what did Sneha specify about the demo video duration limit",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3618
+      ],
+      "matched_target_id": 3618,
+      "target_text": "screen recording kar ke upload karo, 3 min max",
+      "rank": 1,
+      "retrieved_ids": [
+        3618,
+        3234,
+        2273,
+        3426,
+        3035
+      ],
+      "passed": true,
+      "latency_ms": 27.87
+    },
+    {
+      "id": 27,
+      "query": "what did Priya mention about bedroom allotment in the flat",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        2047
+      ],
+      "matched_target_id": 2047,
+      "target_text": "bada kamra Tanvi ko, uska furniture zyada hai",
+      "rank": 1,
+      "retrieved_ids": [
+        2047,
+        4189,
+        1823,
+        1242,
+        1604
+      ],
+      "passed": true,
+      "latency_ms": 23.77
+    },
+    {
+      "id": 28,
+      "query": "what did Vikram say about uploading the demo video to YouTube",
+      "query_type": "attributed",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3669
+      ],
+      "matched_target_id": 3669,
+      "target_text": "final demo video YouTube unlisted link pe upload kar di",
+      "rank": 1,
+      "retrieved_ids": [
+        3669,
+        2348,
+        968,
+        3286,
+        864
+      ],
+      "passed": true,
+      "latency_ms": 25.14
+    },
+    {
+      "id": 29,
+      "query": "what trip plans were decided in the first week of June",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        840,
+        896
+      ],
+      "matched_target_id": 840,
+      "target_text": "chalo Manali fix hai, pahadon me chalte hain",
+      "rank": 1,
+      "retrieved_ids": [
+        840,
+        819,
+        896,
+        864,
+        919
+      ],
+      "passed": true,
+      "latency_ms": 19.42
+    },
+    {
+      "id": 30,
+      "query": "what was agreed about the cottage stay during early June",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        935
+      ],
+      "matched_target_id": 935,
+      "target_text": "Old Manali me wooden cottage mil gaya, 1200 per night",
+      "rank": 1,
+      "retrieved_ids": [
+        935,
+        919,
+        938,
+        896,
+        840
+      ],
+      "passed": true,
+      "latency_ms": 24.53
+    },
+    {
+      "id": 31,
+      "query": "what happened in the evening around June 16 during the cottage stay",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1130
+      ],
+      "matched_target_id": 1130,
+      "target_text": "cottage ke garden me bonfire shuru ho gaya hai, sab aa jao",
+      "rank": 1,
+      "retrieved_ids": [
+        1130,
+        1169,
+        1100,
+        1073,
+        1148
+      ],
+      "passed": true,
+      "latency_ms": 24.35
+    },
+    {
+      "id": 32,
+      "query": "what did we discuss regarding flat search in early July",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1575,
+        1703
+      ],
+      "matched_target_id": 1575,
+      "target_text": "Indiranagar me 3BHK search karte hain, office ke paas",
+      "rank": 1,
+      "retrieved_ids": [
+        1575,
+        1653,
+        1476,
+        1604
+      ],
+      "passed": true,
+      "latency_ms": 24.84
+    },
+    {
+      "id": 33,
+      "query": "what rent decisions were finalized in the middle of July",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1882
+      ],
+      "matched_target_id": 1882,
+      "target_text": "kiraya chaunvan hazaar hai, teen logon me split hoga",
+      "rank": 1,
+      "retrieved_ids": [
+        1882,
+        1823,
+        1604,
+        1920,
+        1653
+      ],
+      "passed": true,
+      "latency_ms": 25.58
+    },
+    {
+      "id": 34,
+      "query": "what was confirmed regarding the deposit in late July",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        1920
+      ],
+      "matched_target_id": 1920,
+      "target_text": "broker bol raha hai dhaii lakh advance mangta hai",
+      "rank": 1,
+      "retrieved_ids": [
+        1920,
+        1978,
+        1899,
+        2047,
+        2122
+      ],
+      "passed": true,
+      "latency_ms": 29.44
+    },
+    {
+      "id": 35,
+      "query": "what shifting appliance plans were made in early August",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        2235
+      ],
+      "matched_target_id": 2235,
+      "target_text": "purana fridge mere ghar se shift karwa denge",
+      "rank": 2,
+      "retrieved_ids": [
+        2381,
+        2235,
+        2199,
+        2273,
+        2348
+      ],
+      "passed": true,
+      "latency_ms": 25.4
+    },
+    {
+      "id": 36,
+      "query": "what party was planned around Independence Day in August",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        2511
+      ],
+      "matched_target_id": 2511,
+      "target_text": "Independence Day pe flat pe biryani party fix hai",
+      "rank": 1,
+      "retrieved_ids": [
+        2511,
+        2381
+      ],
+      "passed": true,
+      "latency_ms": 20.72
+    },
+    {
+      "id": 37,
+      "query": "what hackathon ideas were proposed in early September",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        2979,
+        3012,
+        3035
+      ],
+      "matched_target_id": 2979,
+      "target_text": "AI Hackathon Bangalore announced, 5 Lakhs prize pool",
+      "rank": 1,
+      "retrieved_ids": [
+        2979,
+        3012,
+        3035,
+        2875
+      ],
+      "passed": true,
+      "latency_ms": 25.62
+    },
+    {
+      "id": 38,
+      "query": "what deadline was set in mid September for the hackathon",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3234
+      ],
+      "matched_target_id": 3234,
+      "target_text": "pachees tareekh raat barah baje se pehle deck submit karni hai",
+      "rank": 1,
+      "retrieved_ids": [
+        3234,
+        3354,
+        3212,
+        3261
+      ],
+      "passed": true,
+      "latency_ms": 25.57
+    },
+    {
+      "id": 39,
+      "query": "what video submission requirements were discussed in early October",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3618,
+        3669
+      ],
+      "matched_target_id": 3669,
+      "target_text": "screen recording kar ke upload karo, 3 min max",
+      "rank": 1,
+      "retrieved_ids": [
+        3669,
+        3618,
+        3768
+      ],
+      "passed": true,
+      "latency_ms": 21.74
+    },
+    {
+      "id": 40,
+      "query": "what contest results were shared in mid October",
+      "query_type": "temporal",
+      "zero_lexical_overlap": false,
+      "target_ids": [
+        3846
+      ],
+      "matched_target_id": 3846,
+      "target_text": "guys we secured 2nd place in the AI category!",
+      "rank": 1,
+      "retrieved_ids": [
+        3846,
+        3768,
+        3996
+      ],
+      "passed": true,
+      "latency_ms": 20.36
+    }
+  ]
+}

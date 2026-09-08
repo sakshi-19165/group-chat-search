@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search a Group Chat Properly — Context-Aware Semantic Search</title>
+  <meta name="description" content="Context-aware semantic search engine and conversational AI copilot for code-mixed Hinglish group chats.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">💬</div>
+        <div class="brand-title">Search a Group Chat Properly</div>
+        <span class="brand-badge" id="headerCorpusBadge">4,250 Messages • 8 Users • 6 Months</span>
+      </div>
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="search-view" id="tabSearchBtn">
+          <span>🔍</span> Search
+        </button>
+        <button class="tab-btn" data-tab="chat-view" id="tabChatBtn">
+          <span>🤖</span> Chat Copilot
+        </button>
+        <button class="tab-btn" data-tab="benchmark-view" id="tabBenchmarkBtn">
+          <span>⚡</span> Benchmark Suite
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Views -->
+  <main>
+
+    <!-- SEARCH VIEW -->
+    <section class="view-panel active" id="search-view">
+      <div class="search-hero">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search meaning, decisions, or ask what Priya said... (e.g., 'when did we decide on the trip')"
+            autocomplete="off"
+          />
+          <button class="search-action-btn" id="searchSubmitBtn">Search</button>
+        </div>
+
+        <div class="query-suggestions">
+          <span class="suggestion-label">Try queries:</span>
+          <div class="suggestion-chips-grid">
+            <button class="suggestion-chip" data-query="When was the vacation destination finalized?">🏖️ Destination finalized (Zero overlap)</button>
+            <button class="suggestion-chip" data-query="Who volunteered to manage the shared finances?">📊 Manage finances (Zero overlap)</button>
+            <button class="suggestion-chip" data-query="what did Priya say about the trip budget ceiling">👤 Priya on budget (Attributed)</button>
+            <button class="suggestion-chip" data-query="what happened during the road trip on June 15 or 16">📅 June 15 trip (Temporal)</button>
+            <button class="suggestion-chip" data-query="What was the agreed monthly apartment payment?">🏠 Monthly rent (Zero overlap)</button>
+            <button class="suggestion-chip" data-query="What is the team's software presentation deadline?">⏱️ Pitch deadline (Zero overlap)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Banner -->
+      <div class="analysis-banner" id="analysisBanner" style="display: none;">
+        <div class="analysis-chips">
+          <span class="shape-badge semantic" id="shapeBadge">Semantic</span>
+          <span id="senderChip" style="display: none;" class="shape-badge attributed"></span>
+          <span id="temporalChip" style="display: none;" class="shape-badge temporal"></span>
+        </div>
+        <div class="analysis-info" id="analysisMetaText">
+          Found 10 matching messages in 4.2ms
+        </div>
+      </div>
+
+      <!-- Results Container -->
+      <div id="resultsContainer">
+        <div class="results-header" id="resultsHeader" style="display: none;">
+          <span>Relevant Conversation Snippets (with surrounding context)</span>
+          <span id="matchStats"></span>
+        </div>
+        <div class="results-list" id="resultsList">
+          <div class="empty-state" id="searchEmptyState">
+            <div class="empty-state-icon">🔎</div>
+            <div class="empty-state-title">Type a query or click one of the suggested prompts above</div>
+            <div class="empty-state-subtitle">Search will find messages even when words have zero lexical overlap or use code-mixed Hinglish.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAT COPILOT VIEW -->
+    <section class="view-panel" id="chat-view">
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-row">
+            <div class="chat-avatar assistant">AI</div>
+            <div class="chat-content">
+              Hello! I'm your group chat copilot. I answer questions directly by looking up the 4,250 messages across our 6-month history and quoting exact message references. 
+              <br><br>
+              Try asking: <em>"When did we decide on Manali and what was the budget?"</em> or <em>"Summarize Tanvi's updates on the Indiranagar flat."</em>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <input 
+            type="text" 
+            id="chatInput" 
+            class="chat-input" 
+            placeholder="Ask a question about the group chat decisions..."
+            autocomplete="off"
+          />
+          <button class="search-action-btn" id="chatSendBtn">Send</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENCHMARK VIEW -->
+    <section class="view-panel" id="benchmark-view">
+      <div class="benchmark-top">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">40-Query Benchmark Evaluation Suite</h2>
+          <p style="font-size: 13px; color: var(--text-secondary);">
+            Automated test suite measuring Hit@1, Hit@3, Hit@5, MRR, and zero-lexical overlap comprehension.
+          </p>
+        </div>
+        <button class="benchmark-btn" id="runBenchmarkBtn">
+          <span>▶</span> Run 40 Benchmark Queries
+        </button>
+      </div>
+
+      <div class="metrics-grid" id="metricsGrid" style="display: none;">
+        <div class="metric-card highlight">
+          <span class="metric-title">Zero-Overlap Hit@3</span>
+          <span class="metric-value" id="metricZeroHit">--%</span>
+          <span class="metric-desc">Hardest test: Zero words in common</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Hit@1 Accuracy</span>
+          <span class="metric-value" id="metricHit1">--%</span>
+          <span class="metric-desc">Correct answer ranked #1</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Hit@3 Accuracy</span>
+          <span class="metric-value" id="metricHit3">--%</span>
+          <span class="metric-desc">Correct answer in Top 3</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Mean Reciprocal Rank (MRR)</span>
+          <span class="metric-value" id="metricMRR">--</span>
+          <span class="metric-desc">Overall ranking quality (0 to 1.0)</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Average Latency</span>
+          <span class="metric-value" id="metricLatency">-- ms</span>
+          <span class="metric-desc">Sub-millisecond dot-product retrieval</span>
+        </div>
+      </div>
+
+      <div class="bench-table-filters" id="benchFilters" style="display: none;">
+        <button class="filter-pill active" data-filter="all">All (40)</button>
+        <button class="filter-pill" data-filter="zero">Zero Lexical Overlap (10)</button>
+        <button class="filter-pill" data-filter="semantic">Semantic (16)</button>
+        <button class="filter-pill" data-filter="attributed">Attributed (12)</button>
+        <button class="filter-pill" data-filter="temporal">Temporal (12)</button>
+      </div>
+
+      <div id="benchmarkTableWrapper" style="overflow-x: auto; display: none;">
+        <table class="bench-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">#</th>
+              <th>Query</th>
+              <th style="width: 100px;">Type</th>
+              <th style="width: 90px;">Zero Overlap</th>
+              <th style="width: 90px;">Target ID</th>
+              <th style="width: 80px;">Rank</th>
+              <th style="width: 80px;">Status</th>
+            </tr>
+          </thead>
+          <tbody id="benchmarkTableBody"></tbody>
+        </table>
+      </div>
+
+      <div id="benchmarkPlaceholder" class="empty-state">
+        <div class="empty-state-icon">⚡</div>
+        <div class="empty-state-title">Click "Run 40 Benchmark Queries" to evaluate accuracy</div>
+        <div class="empty-state-subtitle">Evaluates all three query shapes and explicitly validates zero-lexical overlap test cases.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Search a Group Chat Properly • Multilingual Semantic Indexing • Hinglish Code-Mixing Engine
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

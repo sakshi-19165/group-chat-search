@@ -1,0 +1,489 @@
+[
+  {
+    "id": 1,
+    "query": "When was the vacation destination finalized?",
+    "answer_message_id": 840,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'chalo Manali fix hai, pahadon me chalte hain'",
+    "answer_message_ids": [
+      840
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 2,
+    "query": "Who volunteered to manage the shared finances?",
+    "answer_message_id": 2294,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'main sara hisab kitab excel sheet me track karungi'",
+    "answer_message_ids": [
+      2294
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 3,
+    "query": "What was the agreed monthly apartment payment?",
+    "answer_message_id": 1882,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'kiraya chaunvan hazaar hai, teen logon me split hoga'",
+    "answer_message_ids": [
+      1882
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 4,
+    "query": "Did anyone get sick during the mountain getaway?",
+    "answer_message_id": 1148,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'Kabir ko altitude pe chakkar aa rahe the, rest karna pada'",
+    "answer_message_ids": [
+      1148
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 5,
+    "query": "Who agreed to supply the kitchen cooling appliance?",
+    "answer_message_id": 2235,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'purana fridge mere ghar se shift karwa denge'",
+    "answer_message_ids": [
+      2235
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 6,
+    "query": "What is the team's software presentation deadline?",
+    "answer_message_id": 3234,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'pachees tareekh raat barah baje se pehle deck submit karni hai'",
+    "answer_message_ids": [
+      3234
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 7,
+    "query": "Where are travelers staying during the hill station holiday?",
+    "answer_message_id": 935,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'Old Manali me wooden cottage mil gaya, 1200 per night'",
+    "answer_message_ids": [
+      935
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 8,
+    "query": "Who is responsible for constructing the server endpoints?",
+    "answer_message_id": 3120,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'backend routes aur database models main sambhalta hoon'",
+    "answer_message_ids": [
+      3120
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 9,
+    "query": "What was the landlord's upfront financial security requirement?",
+    "answer_message_id": 1920,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'broker bol raha hai dhaii lakh advance mangta hai'",
+    "answer_message_ids": [
+      1920
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 10,
+    "query": "Did someone inspect the vehicle condition before departure?",
+    "answer_message_id": 1055,
+    "query_type": "semantic",
+    "zero_lexical_overlap": true,
+    "rationale": "Query has no common words with target: 'gaadi ki servicing aur tyre check karwa liye hain'",
+    "answer_message_ids": [
+      1055
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 11,
+    "query": "Which car was booked for the road trip?",
+    "answer_message_id": 968,
+    "query_type": "semantic",
+    "zero_lexical_overlap": false,
+    "rationale": "Target: 'Scorpio book kar li, self drive, Rohan chalayega'",
+    "answer_message_ids": [
+      968
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 12,
+    "query": "What is the per person budget cap for Manali?",
+    "answer_message_id": 1000,
+    "query_type": "semantic",
+    "zero_lexical_overlap": false,
+    "rationale": "Target: 'per head 8500 se zyada nahi, Priya track karegi'",
+    "answer_message_ids": [
+      1000,
+      1001
+    ],
+    "accept_thread_proximity": 2
+  },
+  {
+    "id": 13,
+    "query": "When did we lock the trip travel dates?",
+    "answer_message_id": 896,
+    "query_type": "semantic",
+    "zero_lexical_overlap": false,
+    "rationale": "Target: '14 se 18 June pakka, leave apply kar lo sab'",
+    "answer_message_ids": [
+      896
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 14,
+    "query": "When is the official moving date for the flat?",
+    "answer_message_id": 2122,
+    "query_type": "semantic",
+    "zero_lexical_overlap": false,
+    "rationale": "Target: 'pehli August ko shifting final, tempo book karo'",
+    "answer_message_ids": [
+      2122
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 15,
+    "query": "What startup product are we building for the hackathon?",
+    "answer_message_id": 3012,
+    "query_type": "semantic",
+    "zero_lexical_overlap": false,
+    "rationale": "Target: 'group chat search tool banate hain, semantic search wala'",
+    "answer_message_ids": [
+      3012,
+      2979
+    ],
+    "accept_thread_proximity": 3
+  },
+  {
+    "id": 16,
+    "query": "Where can the team find the new project repo to fork",
+    "answer_message_id": 3309,
+    "query_type": "semantic",
+    "zero_lexical_overlap": false,
+    "rationale": "Target: 'repo bana diya hai, sab log fork kar lo'",
+    "answer_message_ids": [
+      3309
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 17,
+    "query": "what did Kabir specify about the trip budget ceiling",
+    "answer_message_id": 1000,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Kabir Sharma",
+    "answer_message_ids": [
+      1000
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 18,
+    "query": "what did Tanvi say about the broker for the 3BHK flat",
+    "answer_message_id": 1703,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Tanvi Joshi",
+    "answer_message_ids": [
+      1703
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 19,
+    "query": "what did Vikram suggest for the backend tech stack",
+    "answer_message_id": 3072,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Vikram Malhotra",
+    "answer_message_ids": [
+      3072
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 20,
+    "query": "what did Rohan report about the vehicle servicing",
+    "answer_message_id": 1055,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Rohan Mehta",
+    "answer_message_ids": [
+      1055
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 21,
+    "query": "what was Sneha's proposal for the wooden cottage in Old Manali",
+    "answer_message_id": 935,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Sneha Rao",
+    "answer_message_ids": [
+      935
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 22,
+    "query": "what did Priya say about tracking expenses in excel",
+    "answer_message_id": 2294,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Priya Patel",
+    "answer_message_ids": [
+      2294
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 23,
+    "query": "what did Arjun offer regarding the refrigerator",
+    "answer_message_id": 2235,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Arjun Nair",
+    "answer_message_ids": [
+      2235
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 24,
+    "query": "what was Kabir's announcement about the hackathon results",
+    "answer_message_id": 3846,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Kabir Sharma",
+    "answer_message_ids": [
+      3846
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 25,
+    "query": "what did Ananya say about Kabir's altitude sickness",
+    "answer_message_id": 1148,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Ananya Iyer",
+    "answer_message_ids": [
+      1148
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 26,
+    "query": "what did Sneha specify about the demo video duration limit",
+    "answer_message_id": 3618,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Sneha Rao",
+    "answer_message_ids": [
+      3618
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 27,
+    "query": "what did Priya mention about bedroom allotment in the flat",
+    "answer_message_id": 2047,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Priya Patel",
+    "answer_message_ids": [
+      2047
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 28,
+    "query": "what did Vikram say about uploading the demo video to YouTube",
+    "answer_message_id": 3669,
+    "query_type": "attributed",
+    "zero_lexical_overlap": false,
+    "sender_filter": "Vikram Malhotra",
+    "answer_message_ids": [
+      3669
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 29,
+    "query": "what trip plans were decided in the first week of June",
+    "answer_message_id": 840,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-06-01 to 2024-06-07",
+    "answer_message_ids": [
+      840,
+      896
+    ],
+    "accept_thread_proximity": 3
+  },
+  {
+    "id": 30,
+    "query": "what was agreed about the cottage stay during early June",
+    "answer_message_id": 935,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-06-05 to 2024-06-10",
+    "answer_message_ids": [
+      935
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 31,
+    "query": "what happened in the evening around June 16 during the cottage stay",
+    "answer_message_id": 1130,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-06-15 to 2024-06-17",
+    "answer_message_ids": [
+      1130
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 32,
+    "query": "what did we discuss regarding flat search in early July",
+    "answer_message_id": 1575,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-07-01 to 2024-07-10",
+    "answer_message_ids": [
+      1575,
+      1703
+    ],
+    "accept_thread_proximity": 3
+  },
+  {
+    "id": 33,
+    "query": "what rent decisions were finalized in the middle of July",
+    "answer_message_id": 1882,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-07-15 to 2024-07-22",
+    "answer_message_ids": [
+      1882
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 34,
+    "query": "what was confirmed regarding the deposit in late July",
+    "answer_message_id": 1920,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-07-20 to 2024-07-31",
+    "answer_message_ids": [
+      1920
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 35,
+    "query": "what shifting appliance plans were made in early August",
+    "answer_message_id": 2235,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-08-01 to 2024-08-08",
+    "answer_message_ids": [
+      2235
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 36,
+    "query": "what party was planned around Independence Day in August",
+    "answer_message_id": 2511,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-08-10 to 2024-08-17",
+    "answer_message_ids": [
+      2511
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 37,
+    "query": "what hackathon ideas were proposed in early September",
+    "answer_message_id": 3012,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-09-01 to 2024-09-08",
+    "answer_message_ids": [
+      2979,
+      3012,
+      3035
+    ],
+    "accept_thread_proximity": 5
+  },
+  {
+    "id": 38,
+    "query": "what deadline was set in mid September for the hackathon",
+    "answer_message_id": 3234,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-09-12 to 2024-09-20",
+    "answer_message_ids": [
+      3234
+    ],
+    "accept_thread_proximity": 0
+  },
+  {
+    "id": 39,
+    "query": "what video submission requirements were discussed in early October",
+    "answer_message_id": 3618,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-10-01 to 2024-10-06",
+    "answer_message_ids": [
+      3618,
+      3669
+    ],
+    "accept_thread_proximity": 3
+  },
+  {
+    "id": 40,
+    "query": "what contest results were shared in mid October",
+    "answer_message_id": 3846,
+    "query_type": "temporal",
+    "zero_lexical_overlap": false,
+    "date_range": "2024-10-10 to 2024-10-16",
+    "answer_message_ids": [
+      3846
+    ],
+    "accept_thread_proximity": 0
+  }
+]
